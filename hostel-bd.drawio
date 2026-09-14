@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Hotel Database" id="hotel-db">
+    <mxGraphModel dx="595" dy="388" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" value="&lt;b&gt;USERS&lt;/b&gt;&lt;hr&gt;PK id : BIGINT&lt;br&gt;email : VARCHAR(255) UNIQUE&lt;br&gt;password : VARCHAR(255)&lt;br&gt;first_name : VARCHAR(100)&lt;br&gt;last_name : VARCHAR(100)&lt;br&gt;patronymic : VARCHAR(100)&lt;br&gt;created_at : TIMESTAMP" vertex="1">
+          <mxGeometry height="230" width="280" x="80" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="guests" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" value="&lt;b&gt;GUESTS&lt;/b&gt;&lt;hr&gt;PK id : BIGINT&lt;br&gt;FK user_id : BIGINT NULL&lt;br&gt;first_name : VARCHAR(100)&lt;br&gt;last_name : VARCHAR(100)&lt;br&gt;patronymic : VARCHAR(100)&lt;br&gt;comment : TEXT" vertex="1">
+          <mxGeometry height="190" width="280" x="80" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" value="&lt;b&gt;ROOMS&lt;/b&gt;&lt;hr&gt;PK id : BIGINT&lt;br&gt;number : INT UNIQUE&lt;br&gt;capacity : INT&lt;br&gt;comfort_type : VARCHAR(30)&lt;br&gt;price : DECIMAL(10,2)" vertex="1">
+          <mxGeometry height="170" width="280" x="760" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" value="&lt;b&gt;BOOKINGS&lt;/b&gt;&lt;hr&gt;PK id : BIGINT&lt;br&gt;FK user_id : BIGINT&lt;br&gt;FK room_id : BIGINT&lt;br&gt;check_in : DATE&lt;br&gt;check_out : DATE NULL&lt;br&gt;created_at : TIMESTAMP&lt;br&gt;status : VARCHAR(30)" vertex="1">
+          <mxGeometry height="210" width="280" x="760" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="booking_guests" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" value="&lt;b&gt;BOOKING_GUESTS&lt;/b&gt;&lt;hr&gt;PK id : BIGINT&lt;br&gt;FK booking_id : BIGINT&lt;br&gt;FK guest_id : BIGINT" vertex="1">
+          <mxGeometry height="140" width="250" x="430" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="payments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" value="&lt;b&gt;PAYMENTS&lt;/b&gt;&lt;hr&gt;PK id : BIGINT&lt;br&gt;FK booking_id : BIGINT&lt;br&gt;amount : DECIMAL(10,2)&lt;br&gt;paid_at : TIMESTAMP&lt;br&gt;status : VARCHAR(30)&lt;br&gt;payment_method : VARCHAR(30)" vertex="1">
+          <mxGeometry height="190" width="280" x="1100" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_user_booking" edge="1" parent="1" source="users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="bookings" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_user_guest" edge="1" parent="1" source="users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERzeroToOne;startArrow=ERone;" target="guests" value="1 : 0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_room_booking" edge="1" parent="1" source="rooms" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="bookings" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_booking_bg" edge="1" parent="1" source="bookings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="booking_guests" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_guest_bg" edge="1" parent="1" source="guests" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="booking_guests" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_booking_payment" edge="1" parent="1" source="bookings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="payments" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
