@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import io.github.eugenezzf.Hostel.entities.User;
+import io.github.eugenezzf.Hostel.enums.ROLE;
 import io.github.eugenezzf.Hostel.repository.UserRepository;
 import lombok.AllArgsConstructor;
 
@@ -20,6 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         .orElseThrow(()-> new UsernameNotFoundException("User not found: " + email));
 
         return org.springframework.security.core.userdetails.User
-        .withUsername(user.getEmail()).password(user.getPassword()).roles("USER").build();
+        .withUsername(user.getEmail()).password(user.getPassword()).roles(ROLE.USER.name()).build();
     }
 }

@@ -2,13 +2,14 @@ package io.github.eugenezzf.Hostel.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.eugenezzf.Hostel.DTO.CreateUserRequest;
 import io.github.eugenezzf.Hostel.entities.User;
 import io.github.eugenezzf.Hostel.service.UserService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+// import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.AllArgsConstructor;
 
 @RestController 

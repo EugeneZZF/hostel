@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import io.github.eugenezzf.Hostel.enums.ROLE;
+
 import io.github.eugenezzf.Hostel.DTO.CreateUserRequest;
 import io.github.eugenezzf.Hostel.entities.User;
 import io.github.eugenezzf.Hostel.repository.UserRepository;
@@ -29,9 +31,11 @@ public class UserService {
         user.setEmail(requestUser.email());
         user.setFirst_name(requestUser.first_name());
         user.setLast_name(requestUser.last_name());
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        
+        user.setPassword(passwordEncoder.encode(requestUser.password()));
+        user.setRole(ROLE.USER);
         user.setCreatedAt(LocalDateTime.now());
+        
 
         return userRepository.save(user);
     }

@@ -2,6 +2,7 @@ package io.github.eugenezzf.Hostel.entities;
 
 import java.time.LocalDateTime;
 
+import io.github.eugenezzf.Hostel.enums.ROLE;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,6 +44,9 @@ public class User {
 
     @Column(name="created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @Column (name="role", nullable = false)
+    private ROLE role;
 
     // @OneToMany(mappedBy = "user")
     // private Guest guest;
